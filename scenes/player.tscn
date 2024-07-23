@@ -24,3 +24,12 @@ polygon = PackedVector2Array(17, -35, 36, -54, 42, -55, 44, -51, 44, 3)
 position = Vector2(-1, 5)
 scale = Vector2(0.61, 0.61)
 shape = SubResource("CircleShape2D_vyymk")
+
+[node name="LaserStartPosition" type="Marker2D" parent="."]
+position = Vector2(27.9998, -46.0001)
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
