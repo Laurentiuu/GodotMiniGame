@@ -29,7 +29,7 @@ texture = ExtResource("1_4vh8v")
 position = Vector2(639, 571)
 
 [node name="Meteor" parent="." instance=ExtResource("3_cw3d6")]
-position = Vector2(802, 165)
+position = Vector2(1242, 39)
 
 [node name="Borders" type="Node" parent="."]
 

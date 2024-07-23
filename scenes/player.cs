@@ -17,5 +17,18 @@ public partial class player : CharacterBody2D
 		Velocity = dir * SPEED;
 
 		MoveAndSlide();
+		_RotateToMouse();
+
+	}
+
+	private void _RotateToMouse()
+	{
+		var mousePosition = GetGlobalMousePosition();
+
+		var direction = mousePosition - GlobalPosition;
+
+		var angle = direction.Angle();
+
+		Rotation = angle + 45;
 	}
 }
