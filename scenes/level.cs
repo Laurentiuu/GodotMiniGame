@@ -1,6 +1,5 @@
 using Godot;
 using System;
-
 public partial class level : Node2D
 {
 	// Load the scene
@@ -28,11 +27,11 @@ public partial class level : Node2D
 		GetNode("Meteors").AddChild(meteor);
 	}
 
-	private void _on_player_laser(Vector2 position, float rotation)
+	private void _on_player_laser(Vector2 position)
 	{
-		var laser = laserScene.Instantiate<laser>();
+		var laser = laserScene.Instantiate<Node2D>();
 		GetNode("Lasers").AddChild(laser);
 
-		laser.Initialize(position, rotation);
+		laser.Position = position;
 	}
 }

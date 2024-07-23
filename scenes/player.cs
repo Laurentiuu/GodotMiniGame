@@ -9,7 +9,7 @@ public partial class player : CharacterBody2D
 	private Boolean canShoot = true;
 
 	[Signal]
-	public delegate void LaserEventHandler(Vector2 position, float rotation);
+	public delegate void LaserEventHandler(Vector2 position);
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,7 +36,7 @@ public partial class player : CharacterBody2D
 		if (Input.IsActionJustPressed("shoot") && canShoot)
 		{
 			Node2D startPos = GetNode<Node2D>("LaserStartPosition");
-			EmitSignal(nameof(LaserEventHandler), startPos.GlobalPosition, Rotation - 45);
+			EmitSignal(nameof(LaserEventHandler), startPos.GlobalPosition);
 
 			canShoot = false;
 			GetNode<Timer>("LaserTimer").Start();

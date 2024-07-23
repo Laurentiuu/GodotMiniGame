@@ -8,7 +8,6 @@ radius = 6.0
 height = 64.0
 
 [node name="Laser" type="Area2D"]
-rotation = -1.44164
 scale = Vector2(1.00733, 1.011)
 collision_layer = 8
 collision_mask = 2
