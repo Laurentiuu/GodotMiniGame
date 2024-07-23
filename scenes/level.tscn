@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpg653poocjxl"]
+
+[ext_resource type="Texture2D" uid="uid://dtbjwfow5xep5" path="res://assets/darkPurple.png" id="1_4vh8v"]
+[ext_resource type="Script" path="res://scenes/level.cs" id="1_ai23c"]
+[ext_resource type="PackedScene" uid="uid://b2d05dorgl60i" path="res://scenes/player.tscn" id="2_usk4w"]
+[ext_resource type="PackedScene" uid="uid://uytcvhdtecef" path="res://scenes/meteor.tscn" id="3_cw3d6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esrky"]
+size = Vector2(62, 785)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kf3dr"]
+size = Vector2(1366.5, 89)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rapix"]
+size = Vector2(1330.5, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jubt4"]
+size = Vector2(133.5, 855)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_ai23c")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(646, 364)
+scale = Vector2(5.14844, 2.86328)
+texture = ExtResource("1_4vh8v")
+
+[node name="Player" parent="." instance=ExtResource("2_usk4w")]
+position = Vector2(639, 571)
+
+[node name="Meteor" parent="." instance=ExtResource("3_cw3d6")]
+position = Vector2(802, 165)
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(1312, 363)
+shape = SubResource("RectangleShape2D_esrky")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2"]
+position = Vector2(625, 765)
+shape = SubResource("RectangleShape2D_kf3dr")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3"]
+position = Vector2(647, -22)
+shape = SubResource("RectangleShape2D_rapix")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4"]
+position = Vector2(-69, 381)
+shape = SubResource("RectangleShape2D_jubt4")
+
+[node name="MeteorTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="Meteors" type="Node2D" parent="."]
+
+[connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]

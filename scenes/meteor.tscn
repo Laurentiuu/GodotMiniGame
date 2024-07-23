@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://uytcvhdtecef"]
+
+[ext_resource type="Script" path="res://scenes/meteor.cs" id="1_jt5wv"]
+[ext_resource type="Texture2D" uid="uid://bvptom8j2kdmk" path="res://assets/meteors/1.png" id="2_ptu4t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lwiq6"]
+radius = 37.054
+
+[node name="Meteor" type="Area2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_jt5wv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, 17)
+texture = ExtResource("2_ptu4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+shape = SubResource("CircleShape2D_lwiq6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
