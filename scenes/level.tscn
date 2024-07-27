@@ -27,10 +27,12 @@ scale = Vector2(5.14844, 2.86328)
 texture = ExtResource("1_4vh8v")
 
 [node name="Player" parent="." instance=ExtResource("2_usk4w")]
-position = Vector2(639, 571)
+light_mask = 0
+visibility_layer = 16
+position = Vector2(635, 517)
 
 [node name="Meteor" parent="." instance=ExtResource("3_cw3d6")]
-position = Vector2(1242, 39)
+position = Vector2(1273, 19)
 
 [node name="Borders" type="Node" parent="."]
 

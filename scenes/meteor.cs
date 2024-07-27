@@ -8,6 +8,9 @@ public partial class meteor : Area2D
 	private double directionX;
 	private int rotationSpeed;
 
+	[Signal]
+	public delegate void MeteorEventHandler(Vector2 position);
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,6 +31,11 @@ public partial class meteor : Area2D
 		speed = random.Next(140, 400);
 		directionX = (float)(random.NextDouble() * 2 - 1);
 		rotationSpeed = random.Next(40, 100);
+	
+		if (!HasSignal(nameof(MeteorEventHandler)))
+		{
+			AddUserSignal(nameof(MeteorEventHandler));
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,8 +48,17 @@ public partial class meteor : Area2D
 
 	private void _on_body_entered(Node2D body)
 	{
-		GD.Print("AM SI MURIT", body);
+		EmitSignal(nameof(MeteorEventHandler), Position);
 	}
+
+	private void _on_area_entered(Area2D area)
+	{
+		area.QueueFree();
+		QueueFree();
+	}
+
 }
+
+
 
 
