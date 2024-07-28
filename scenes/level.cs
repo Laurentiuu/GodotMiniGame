@@ -1,5 +1,6 @@
 using Godot;
 using System;
+
 public partial class level : Node2D
 {
 	// Load the scene
@@ -7,14 +8,14 @@ public partial class level : Node2D
 	private PackedScene laserScene = GD.Load<PackedScene>("res://scenes/laser.tscn");
 
 	private int health = 5;
+	private player playerInstance;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var player = GetNode<player>("Player");
-		player.Connect(nameof(player.LaserEventHandler), new Callable(this, nameof(_on_player_laser)));
+		playerInstance = GetNode<player>("Player");
+		playerInstance.Connect(nameof(player.LaserEventHandler), new Callable(this, nameof(_on_player_laser)));
 		GetTree().CallGroup("ui", nameof(ui.set_health), health);
-
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,7 +33,6 @@ public partial class level : Node2D
 
 		var meteor = (meteor)meteorInstance;
 		meteor.Connect(nameof(meteor.MeteorEventHandler), new Callable(this, nameof(_on__meteor_colision)));
-
 	}
 
 	private void _on__meteor_colision(Vector2 position)
@@ -47,13 +47,15 @@ public partial class level : Node2D
 		{
 			CallDeferred(nameof(ChangeSceneDeferred));
 		}
+
+
+		playerInstance.PlayColisionSound();
 	}
 
 	private void ChangeSceneDeferred()
 	{
 		GetTree().ChangeSceneToFile("res://scenes/game_over.tscn");
 	}
-
 
 	private void _on_player_laser(Vector2 position)
 	{

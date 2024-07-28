@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/sfx_shieldUp.ogg-5945d037e4f589fdfcfd010d4cac
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

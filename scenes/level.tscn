@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bpg653poocjxl"]
 
-[ext_resource type="Texture2D" uid="uid://dtbjwfow5xep5" path="res://assets/darkPurple.png" id="1_4vh8v"]
 [ext_resource type="Script" path="res://scenes/level.cs" id="1_ai23c"]
+[ext_resource type="Texture2D" uid="uid://b6l0tjq0fxtij" path="res://assets/black.png" id="2_pypcn"]
 [ext_resource type="PackedScene" uid="uid://b2d05dorgl60i" path="res://scenes/player.tscn" id="2_usk4w"]
 [ext_resource type="PackedScene" uid="uid://uytcvhdtecef" path="res://scenes/meteor.tscn" id="3_cw3d6"]
 [ext_resource type="PackedScene" uid="uid://cj6qnqeu4471w" path="res://scenes/ui.tscn" id="5_2trai"]
@@ -24,7 +24,7 @@ script = ExtResource("1_ai23c")
 [node name="BG" type="Sprite2D" parent="."]
 position = Vector2(646, 364)
 scale = Vector2(5.14844, 2.86328)
-texture = ExtResource("1_4vh8v")
+texture = ExtResource("2_pypcn")
 
 [node name="Player" parent="." instance=ExtResource("2_usk4w")]
 light_mask = 0

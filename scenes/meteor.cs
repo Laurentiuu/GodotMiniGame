@@ -3,14 +3,14 @@ using System;
 
 public partial class meteor : Area2D
 {
-
 	private int speed = 200;
 	private double directionX;
 	private int rotationSpeed;
 
+	private bool canColide = true;
+
 	[Signal]
 	public delegate void MeteorEventHandler(Vector2 position);
-
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -31,8 +31,8 @@ public partial class meteor : Area2D
 		speed = random.Next(140, 400);
 		directionX = (float)(random.NextDouble() * 2 - 1);
 		rotationSpeed = random.Next(40, 100);
-	
-		if (!HasSignal(nameof(MeteorEventHandler)))
+
+		if (!HasSignal(nameof(MeteorEventHandler)) && canColide)
 		{
 			AddUserSignal(nameof(MeteorEventHandler));
 		}
@@ -51,14 +51,18 @@ public partial class meteor : Area2D
 		EmitSignal(nameof(MeteorEventHandler), Position);
 	}
 
-	private void _on_area_entered(Area2D area)
+	private async void _on_area_entered(Area2D area)
 	{
 		area.QueueFree();
+
+		GetNode<AudioStreamPlayer2D>("ExplosionSound").Play();
+		GetNode<Sprite2D>("Sprite2D").Hide();
+		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
+		canColide = false;
+
+		// Await the timeout signal of the timer
+		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+
 		QueueFree();
 	}
-
 }
-
-
-
-

@@ -40,7 +40,13 @@ public partial class player : CharacterBody2D
 
 			canShoot = false;
 			GetNode<Timer>("LaserTimer").Start();
+			GetNode<AudioStreamPlayer2D>("LaserSound").Play();
 		}
+	}
+
+	public void PlayColisionSound()
+	{
+		GetNode<AudioStreamPlayer2D>("DamageSound").Play();
 	}
 
 	// private void _RotateToMouse()
