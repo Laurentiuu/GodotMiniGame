@@ -18,7 +18,7 @@ public partial class meteor : Area2D
 		Random random = new Random();
 
 		//get random texture from meteors file
-		string path = "res://assets/meteors/" + random.Next(1, 3).ToString() + ".png";
+		string path = "res://assets/meteors/" + random.Next(1, 12).ToString() + ".png";
 		Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
 		Texture2D texture = GD.Load<Texture2D>(path);
 		sprite.Texture = texture;

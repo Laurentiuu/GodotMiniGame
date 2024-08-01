@@ -22,14 +22,14 @@ size = Vector2(133.5, 855)
 script = ExtResource("1_ai23c")
 
 [node name="BG" type="Sprite2D" parent="."]
-position = Vector2(646, 364)
-scale = Vector2(5.14844, 2.86328)
+position = Vector2(661, 363)
+scale = Vector2(5.208, 2.896)
 texture = ExtResource("2_pypcn")
 
 [node name="Player" parent="." instance=ExtResource("2_usk4w")]
 light_mask = 0
 visibility_layer = 16
-position = Vector2(635, 517)
+position = Vector2(641, 364)
 
 [node name="Meteor" parent="." instance=ExtResource("3_cw3d6")]
 position = Vector2(1273, 19)
